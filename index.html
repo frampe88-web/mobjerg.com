@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Annoncering for webshops, der vil vækste på tal | Møbjerg</title>
+<meta name="description" content="Annoncering på Meta og Google for danske webshops, fra en controller der selv har drevet en webshop. Gratis kig på jeres setup og fast pris på den første analyse.">
+<meta name="author" content="Frank Møbjerg">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#EEF0EC">
+<link rel="canonical" href="https://mobjerg.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Møbjerg">
+<meta property="og:locale" content="da_DK">
+<meta property="og:title" content="Annoncering for webshops, der vil vækste på tal | Møbjerg">
+<meta property="og:description" content="Annoncering på Meta og Google for danske webshops, fra en controller der selv har drevet en webshop. Gratis kig på jeres setup og fast pris på den første analyse.">
+<meta property="og:url" content="https://mobjerg.com/">
+<meta property="og:image" content="https://mobjerg.com/portait.jpg">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EEF0EC;
+    --paper-2:#E6E9E3;
+    --card:#F6F7F4;
+    --ink:#16201B;
+    --ink-soft:#56605A;
+    --green:#1E4A38;
+    --green-bright:#2F7D5B;
+    --sage:#BFD2C4;
+    --amber:#B8853A;
+    --line:rgba(22,32,27,0.13);
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Hanken Grotesk',system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .serif{font-family:'Spectral',Georgia,serif}
+  .mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+  a{color:inherit;text-decoration:none}
+
+  /* eyebrow / label */
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--green);
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--green);display:inline-block}
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(238,240,236,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{font-family:'Spectral',serif;font-weight:600;font-size:24px;letter-spacing:-.01em}
+  .brand span{color:var(--green)}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-size:14.5px;color:var(--ink-soft);transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{
+    display:inline-block;font-weight:600;font-size:15px;
+    background:var(--green);color:#F6F7F4;
+    padding:12px 22px;border-radius:2px;border:1px solid var(--green);
+    transition:transform .18s ease,background .2s ease;
+    cursor:pointer;
+  }
+  .btn:hover{background:#163a2c;transform:translateY(-1px)}
+  .btn-ghost{
+    background:transparent;color:var(--ink);border:1px solid var(--line);
+  }
+  .btn-ghost:hover{background:var(--paper-2);border-color:var(--ink);transform:translateY(-1px)}
+  .nav .btn{padding:10px 18px;font-size:14px}
+  .menu-toggle{
+    display:none;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    background:none;border:1px solid var(--line);border-radius:2px;padding:9px 14px;color:var(--ink);cursor:pointer;
+  }
+  .nav-right{display:flex;align-items:center;gap:10px}
+
+  /* ---------- hero ---------- */
+  .hero{padding:84px 0 72px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero h1{
+    font-family:'Spectral',serif;font-weight:600;
+    font-size:clamp(38px,5.2vw,62px);line-height:1.04;letter-spacing:-.02em;
+    margin:22px 0 22px;
+  }
+  .hero h1 em{font-style:italic;color:var(--green)}
+  .hero-sub{font-size:18.5px;color:var(--ink-soft);max-width:33ch;margin-bottom:32px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+
+  /* chart card */
+  .chart-card{
+    background:var(--card);border:1px solid var(--line);border-radius:4px;
+    padding:26px 26px 22px;
+    box-shadow:0 1px 0 rgba(22,32,27,.04),0 18px 40px -28px rgba(22,32,27,.45);
+  }
+  .chart-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+  .chart-title{font-size:13px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+  .chart-legend{display:flex;gap:18px;margin-top:14px;flex-wrap:wrap}
+  .leg{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace}
+  .leg i{width:14px;height:3px;border-radius:2px;display:inline-block}
+  .leg .rev{background:var(--green)}
+  .leg .spend{background:var(--amber)}
+  svg .draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.9s ease forwards .35s}
+  svg .draw.d2{animation-delay:.7s}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .area-fill{opacity:0;animation:fade 1.2s ease forwards 1.2s}
+  @keyframes fade{to{opacity:1}}
+
+  /* ---------- section scaffolding ---------- */
+  .block{padding:86px 0;border-bottom:1px solid var(--line);scroll-margin-top:72px}
+  .block-head{max-width:62ch;margin-bottom:48px}
+  .block-head h2{
+    font-family:'Spectral',serif;font-weight:600;
+    font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.015em;
+    margin:18px 0 16px;
+  }
+  .block-head p{color:var(--ink-soft);font-size:18px;max-width:54ch}
+
+  /* edge / facets */
+  .facets{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--card)}
+  .facet{padding:32px 28px;border-right:1px solid var(--line)}
+  .facet:last-child{border-right:none}
+  .facet .num{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--green)}
+  .facet h3{font-family:'Spectral',serif;font-weight:600;font-size:21px;margin:14px 0 8px}
+  .facet p{font-size:15.5px;color:var(--ink-soft)}
+
+  /* cases */
+  .cases{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .case{
+    background:var(--card);border:1px solid var(--line);border-radius:4px;
+    padding:34px 32px;display:flex;flex-direction:column;
+  }
+  .case .tag{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+  .case h3{font-family:'Spectral',serif;font-weight:600;font-size:24px;margin:14px 0 16px;letter-spacing:-.01em}
+  .case p{font-size:16px;color:var(--ink-soft);margin-bottom:8px}
+  .case p.lead{color:var(--ink)}
+  .stats{display:flex;gap:30px;margin:22px 0 4px;flex-wrap:wrap}
+  .stat .big{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:34px;color:var(--green);line-height:1}
+  .stat .lbl{font-size:13px;color:var(--ink-soft);margin-top:6px}
+  .case .foot{margin-top:auto;padding-top:20px;font-size:14.5px;color:var(--ink-soft);border-top:1px solid var(--line)}
+  .case .foot b{color:var(--amber);font-weight:600}
+  .spark{margin:10px 0 0}
+
+  /* services */
+  .services{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .svc{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:36px 34px;display:flex;flex-direction:column}
+  .svc .leg-no{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--green-bright);letter-spacing:.1em}
+  .svc h3{font-family:'Spectral',serif;font-weight:600;font-size:26px;margin:12px 0 10px;letter-spacing:-.01em}
+  .svc .desc{color:var(--ink-soft);font-size:16px;margin-bottom:24px}
+  .entry{background:var(--paper-2);border:1px solid var(--line);border-radius:3px;padding:18px 20px;margin-bottom:14px}
+  .entry .k{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+  .entry .t{font-family:'Spectral',serif;font-size:18.5px;font-weight:600;margin:6px 0 4px}
+  .entry .s{font-size:14.5px;color:var(--ink-soft)}
+  .svc ul{list-style:none;margin-top:6px}
+  .svc li{font-size:15.5px;color:var(--ink);padding:9px 0 9px 26px;position:relative;border-top:1px solid var(--line)}
+  .svc li:first-child{border-top:none}
+  .svc li::before{content:"→";position:absolute;left:0;color:var(--green-bright);font-family:'IBM Plex Mono',monospace}
+
+  /* process */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;counter-reset:s}
+  .step{padding:0 28px;border-left:1px solid var(--line)}
+  .step:first-child{padding-left:0;border-left:none}
+  .step .no{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--green);letter-spacing:.06em}
+  .step h3{font-family:'Spectral',serif;font-weight:600;font-size:21px;margin:14px 0 10px}
+  .step p{font-size:15.5px;color:var(--ink-soft)}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:start}
+  .portrait{
+    aspect-ratio:1/1.12;border-radius:4px;border:1px solid var(--line);
+    background:
+      radial-gradient(120% 90% at 30% 12%, #2a5b46 0%, var(--green) 42%, #14342a 100%);
+    position:relative;overflow:hidden;display:flex;align-items:flex-end;
+  }
+  .portrait .mark{font-family:'Spectral',serif;font-size:120px;font-weight:600;color:rgba(255,255,255,.10);position:absolute;top:-18px;right:6px;line-height:1}
+  .portrait .cap{color:#dfe9e1;padding:22px 24px;font-size:14px;font-family:'IBM Plex Mono',monospace;position:relative;z-index:2}
+  .about-text p{font-size:18px;margin-bottom:18px;color:var(--ink-soft);max-width:56ch}
+  .about-text p b{color:var(--ink);font-weight:600}
+  .creds{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
+  .cred{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--green);border:1px solid var(--line);border-radius:2px;padding:7px 12px;background:var(--card)}
+
+  /* extension (process as the quieter, secondary leg) */
+  .extension{background:var(--paper-2)}
+  .extension .block-head h2{font-size:clamp(23px,2.9vw,31px)}
+  .ext-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  .ext-grid .case,.ext-grid .svc{background:var(--card)}
+
+  /* contact */
+  .contact{background:var(--green);color:#EAF1EC;border-bottom:none}
+  .contact .eyebrow{color:var(--sage)}
+  .contact .eyebrow::before{background:var(--sage)}
+  .contact h2{font-family:'Spectral',serif;font-weight:600;font-size:clamp(30px,4.2vw,48px);line-height:1.06;letter-spacing:-.02em;margin:18px 0 18px}
+  .contact h2 em{font-style:italic;color:var(--sage)}
+  .contact p{color:#c4d6c9;font-size:18.5px;max-width:46ch;margin-bottom:30px}
+  .contact .btn{background:#F6F7F4;color:var(--green);border-color:#F6F7F4}
+  .contact .btn:hover{background:#fff}
+  .contact .btn-ghost{background:transparent;color:#EAF1EC;border-color:rgba(255,255,255,.3)}
+  .contact .btn-ghost:hover{background:rgba(255,255,255,.08);border-color:#fff}
+  .contact-cta{display:flex;gap:14px;flex-wrap:wrap}
+
+  /* portrait image */
+  .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+  /* faq */
+  .faq{max-width:760px}
+  .faq details{border-top:1px solid var(--line)}
+  .faq details:last-child{border-bottom:1px solid var(--line)}
+  .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:20px 0}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary h3{font-family:'Spectral',serif;font-weight:600;font-size:19px;letter-spacing:-.01em}
+  .faq summary::after{content:"+";font-family:'IBM Plex Mono',monospace;font-size:20px;color:var(--green);flex-shrink:0;transition:transform .2s ease}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq .a{padding:0 0 22px;color:var(--ink-soft);max-width:62ch;font-size:16px}
+
+  /* contact form */
+  .cform{max-width:600px;margin-top:6px}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .ffield{margin-bottom:14px;display:flex;flex-direction:column;gap:6px}
+  .ffield label{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage)}
+  .ffield input,.ffield textarea{
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.28);border-radius:3px;
+    padding:12px 14px;color:#F2F7F3;font:inherit;font-size:15.5px;width:100%;
+  }
+  .ffield input::placeholder,.ffield textarea::placeholder{color:rgba(234,241,236,.45)}
+  .ffield input:focus-visible,.ffield textarea:focus-visible{outline:2px solid var(--sage);outline-offset:1px;border-color:#fff}
+  .cform .btn{margin-top:4px}
+  .fnote{font-size:14.5px;color:#c4d6c9;margin-top:16px}
+  .fnote a{text-decoration:underline}
+
+  /* footer */
+  footer{padding:40px 0;background:var(--ink);color:#aeb8b2}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+  .foot-inner .brand{color:#F6F7F4}
+  .foot-inner .brand span{color:var(--sage)}
+  .foot-links{display:flex;gap:24px;font-size:14px;font-family:'IBM Plex Mono',monospace}
+  .foot-links a{color:#aeb8b2;transition:color .2s}
+  .foot-links a:hover{color:#fff}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .about-grid{grid-template-columns:1fr;gap:32px}
+    .cases,.services{grid-template-columns:1fr}
+    .ext-grid{grid-template-columns:1fr}
+    .facets{grid-template-columns:1fr}
+    .facet{border-right:none;border-bottom:1px solid var(--line)}
+    .facet:last-child{border-bottom:none}
+    .steps{grid-template-columns:1fr;gap:0}
+    .step{border-left:none;border-top:1px solid var(--line);padding:24px 0}
+    .step:first-child{padding-top:0;border-top:none}
+    .menu-toggle{display:inline-block}
+    .nav-links{
+      display:none;position:absolute;top:68px;left:0;right:0;
+      background:var(--paper);border-bottom:1px solid var(--line);
+      flex-direction:column;align-items:stretch;gap:0;padding:4px 28px 14px;
+    }
+    .nav.open .nav-links{display:flex}
+    .nav-links a{padding:13px 0;font-size:16px;border-top:1px solid var(--line)}
+    .nav-links a:first-child{border-top:none}
+    .portrait{max-width:340px}
+  }
+  @media(max-width:560px){
+    body{font-size:16px}
+    .block{padding:62px 0}
+    .hero{padding:54px 0 50px}
+    .stats{gap:22px}
+    .frow{grid-template-columns:1fr}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://mobjerg.com/#virksomhed",
+      "name": "Møbjerg",
+      "url": "https://mobjerg.com/",
+      "email": "frank@mobjerg.com",
+      "description": "Konsulentvirksomhed der hjælper danske webshops med annoncering på Meta og Google og optimerer manuelle processer som bestilling, lager og rapportering.",
+      "address": {"@type": "PostalAddress", "streetAddress": "Koldingvej 25", "postalCode": "7100", "addressLocality": "Vejle", "addressCountry": "DK"},
+      "areaServed": {"@type": "Country", "name": "Danmark"},
+      "founder": {"@id": "https://mobjerg.com/#frank"},
+      "knowsAbout": ["Meta Ads", "Google Ads", "E-commerce", "Shopify", "Procesoptimering", "Automatisering"],
+      "makesOffer": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Vækst- og annonceanalyse", "description": "Gennemgang af kontostruktur og kunde- og produktøkonomi med en konkret vækstplan. Fast pris."}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Løbende annoncering på Meta og Google Ads", "description": "Drift og optimering af betalt annoncering for webshops på fast månedlig aftale."}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Proces- og automatiseringsdiagnose", "description": "Kortlægning af manuelle processer med prioriteret plan og estimat på besparelsen. Fast pris."}}
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://mobjerg.com/#frank",
+      "name": "Frank Møbjerg",
+      "jobTitle": "Konsulent i digital annoncering og procesoptimering",
+      "email": "frank@mobjerg.com",
+      "image": "https://mobjerg.com/portait.jpg",
+      "worksFor": {"@id": "https://mobjerg.com/#virksomhed"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "Hvilke platforme arbejder du med?", "acceptedAnswer": {"@type": "Answer", "text": "Primært Meta, altså Facebook og Instagram, og Google Ads. Det er der, langt de fleste danske webshops henter deres nye kunder."}},
+        {"@type": "Question", "name": "Hvad koster det?", "acceptedAnswer": {"@type": "Answer", "text": "Det første kig er gratis. Analysen er til fast pris, som du kender på forhånd, og løbende annoncering kører som en fast månedlig aftale, der afhænger af budgettets størrelse. Du får altid prisen, før vi går i gang."}},
+        {"@type": "Question", "name": "Hvor hurtigt kan jeg se resultater?", "acceptedAnswer": {"@type": "Answer", "text": "Det afhænger af udgangspunktet. Oplagte fejl i opsætningen kan flyttes på uger, mens en ny strategi typisk skal have et par måneder. I min største case lå ROAS 20-30% over det tidligere bureaus inden for de første måneder."}},
+        {"@type": "Question", "name": "Arbejder du kun med hårpleje og beauty?", "acceptedAnswer": {"@type": "Answer", "text": "Nej. Min største case er en hårpleje-webshop, og det er den kategori jeg kender bedst, men tilgangen er den samme for de fleste webshops med fysiske produkter. Jeg starter altid i tallene."}},
+        {"@type": "Question", "name": "Hvorfor ikke bare vælge et bureau?", "acceptedAnswer": {"@type": "Answer", "text": "Det kan sagtens være det rigtige for nogle. Min erfaring er bare, at de fleste bureauer optimerer på annoncerne og ikke på forretningen bag. Da et bureau overtog den konto, jeg havde bygget op, faldt ROAS 100-200% på tre måneder."}},
+        {"@type": "Question", "name": "Hvad er en proces- og automatiseringsdiagnose?", "acceptedAnswer": {"@type": "Answer", "text": "En kortlægning af jeres tungeste manuelle processer, for eksempel bestilling, lager eller skadesanmeldelser. I får en prioriteret plan og et estimat på, hvad I kan spare. Den laves til fast pris."}},
+        {"@type": "Question", "name": "Hvor i landet arbejder du?", "acceptedAnswer": {"@type": "Answer", "text": "Jeg arbejder med virksomheder i hele Danmark. Det meste foregår online, og ellers kører jeg gerne ud."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="top">
+  <div class="wrap nav-inner">
+    <div class="brand">Mø<span>bjerg</span></div>
+    <div class="nav-links" id="navlinks">
+      <a href="#kant">Hvorfor mig</a>
+      <a href="#cases">Beviset</a>
+      <a href="#ydelser">Annoncering</a>
+      <a href="#mere">Også proces</a>
+      <a href="#om">Om</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-right">
+      <button class="menu-toggle" aria-expanded="false" aria-controls="navlinks">Menu</button>
+      <a href="#kontakt" class="btn">Få et gratis kig</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <span class="eyebrow">Annoncering for webshops</span>
+      <h1>Vækst der bliver <em>bygget</em>. Ikke købt.</h1>
+      <p class="hero-sub">Jeg kører annoncering på Meta og Google for webshops. Min baggrund er økonomistyring, så jeg starter i dine tal, ikke i annoncekontoen.</p>
+      <div class="hero-cta">
+        <a href="#kontakt" class="btn">Få et gratis kig på jeres annoncering</a>
+        <a href="#cases" class="btn btn-ghost">Se tallene</a>
+      </div>
+    </div>
+
+    <div class="chart-card reveal in">
+      <div class="chart-head">
+        <span class="chart-title">DANSK HÅRPLEJE-WEBSHOP · 4 ÅR</span>
+      </div>
+      <svg viewBox="0 0 520 290" width="100%" role="img" aria-label="Omsætning steg seks gange mens annoncebudgettet kun steg to en halv gang">
+        <!-- gridlines -->
+        <g stroke="var(--line)" stroke-width="1">
+          <line x1="40" y1="40" x2="500" y2="40"/>
+          <line x1="40" y1="100" x2="500" y2="100"/>
+          <line x1="40" y1="160" x2="500" y2="160"/>
+          <line x1="40" y1="220" x2="500" y2="220"/>
+        </g>
+        <!-- area between revenue and spend = built value -->
+        <path class="area-fill" d="M40,206 L155,184 L270,154 L385,120 L500,58 L500,180 L385,194 L270,206 L155,216 L40,220 Z" fill="var(--sage)" opacity="0.45"/>
+        <!-- spend line (amber) -->
+        <path class="draw d2" d="M40,220 L155,216 L270,206 L385,194 L500,180" fill="none" stroke="var(--amber)" stroke-width="2.5" stroke-linecap="round" pathLength="1"/>
+        <!-- revenue line (green) -->
+        <path class="draw" d="M40,206 L155,184 L270,154 L385,120 L500,58" fill="none" stroke="var(--green)" stroke-width="3" stroke-linecap="round" pathLength="1"/>
+        <!-- endpoint markers -->
+        <circle cx="500" cy="58" r="4.5" fill="var(--green)"/>
+        <circle cx="500" cy="180" r="4" fill="var(--amber)"/>
+        <!-- x labels -->
+        <g font-family="IBM Plex Mono" font-size="11" fill="var(--ink-soft)">
+          <text x="34" y="240">År 1</text>
+          <text x="468" y="240">År 4</text>
+          <text x="34" y="200" text-anchor="end" opacity="0">1M</text>
+        </g>
+        <text x="40" y="24" font-family="Spectral" font-size="15" fill="var(--ink)">Omsætning ×6</text>
+      </svg>
+      <div class="chart-legend">
+        <span class="leg"><i class="rev"></i>Omsætning · 1M → 6M kr.</span>
+        <span class="leg"><i class="spend"></i>Annoncebudget · ×2,5</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- THE EDGE -->
+<section class="block" id="kant">
+  <div class="wrap">
+    <div class="block-head reveal">
+      <span class="eyebrow">Hvorfor mig</span>
+      <h2>De fleste optimerer på annoncerne. Jeg optimerer på forretningen bag.</h2>
+      <p>Det lyder måske som en detalje, men det er hele forskellen. I min største case betød det, at budgettet flyttede fra retargeting til nye kunder, og at omsætningen voksede seks gange på fire år. Det kan jeg, fordi jeg har været hele vejen rundt om en webshop:</p>
+    </div>
+    <div class="facets reveal">
+      <div class="facet">
+        <span class="num">01</span>
+        <h3>Tallene</h3>
+        <p>Jeg er uddannet financial controller og har arbejdet med økonomistyring og ledelse. Dækningsgrad, livstidsværdi og enhedsøkonomi er der, jeg starter.</p>
+      </div>
+      <div class="facet">
+        <span class="num">02</span>
+        <h3>Annoncerne</h3>
+        <p>Jeg har selv sat annoncering op og driftet den på flere markeder. Du taler med mig, og det er også mig, der laver arbejdet.</p>
+      </div>
+      <div class="facet">
+        <span class="num">03</span>
+        <h3>Driften</h3>
+        <p>Jeg har drevet en Shopify-webshop i det daglige med bestilling, lager, økonomi og rapportering. Så jeg ved, hvad tallene dækker over.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="block" id="cases">
+  <div class="wrap">
+    <div class="block-head reveal">
+      <span class="eyebrow">Beviset</span>
+      <h2>Resultater fra fire års arbejde med den samme webshop.</h2>
+      <p>En dansk hårpleje-webshop. Jeg overtog annonceringen fra et eksternt bureau i 2022 og har kørt den siden.</p>
+    </div>
+    <div class="cases">
+
+      <div class="case reveal">
+        <span class="tag">Annoncering · hårpleje-webshop</span>
+        <h3>Fra 1 mio. til 6 mio. på fire år</h3>
+        <p class="lead">Da jeg overtog annonceringen, var det første jeg gjorde at kigge på kundedata. Shoppen var usædvanligt god til at holde på sine kunder, så en ny kunde var meget mere værd end det første salg. Derfor flyttede jeg budgettet fra retargeting over på at skaffe nye kunder.</p>
+        <div class="stats">
+          <div class="stat"><div class="big">×6</div><div class="lbl">omsætning</div></div>
+          <div class="stat"><div class="big">12</div><div class="lbl">blended ROAS '25</div></div>
+          <div class="stat"><div class="big">×2,5</div><div class="lbl">i annoncespend</div></div>
+        </div>
+        <div class="foot">ROAS lå 20-30% højere end det gamle bureaus inden for få måneder.</div>
+      </div>
+
+      <div class="case reveal">
+        <span class="tag">Samme webshop · 2024</span>
+        <h3>Da et bureau tog over, faldt ROAS 100-200%</h3>
+        <p class="lead">I 2024 ville vi se, om et bureau kunne gøre det bedre. Et eksternt bureau overtog annonceringen i april, og på tre måneder faldt ROAS med 100-200%. Jeg tog opgaven tilbage, fik rettet op på kontoen, og året endte alligevel med en bedre ROAS end 2023.</p>
+        <div class="stats">
+          <div class="stat"><div class="big">3 mdr.</div><div class="lbl">bureau ved roret</div></div>
+          <div class="stat"><div class="big">100-200%</div><div class="lbl">fald i ROAS</div></div>
+        </div>
+        <div class="foot">Et dyrt eksperiment. Men det fjernede al tvivl.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="block" id="ydelser">
+  <div class="wrap">
+    <div class="block-head reveal">
+      <span class="eyebrow">Annoncering</span>
+      <h2>Først tallene. Så annoncerne.</h2>
+      <p>Vi starter altid med en analyse til fast pris, så du ved hvad det koster, og så vi finder ud af, om der overhovedet er noget at hente, før du binder dig til mere.</p>
+    </div>
+    <div class="services">
+
+      <div class="svc reveal">
+        <span class="leg-no">FAST PRIS</span>
+        <h3>Vækst- og annonceanalyse</h3>
+        <p class="desc">Jeg gennemgår din kontostruktur og din kunde- og produktøkonomi og kommer med en konkret plan for, hvor væksten skal komme fra. Du har den efter cirka en uge, og beløbet bliver modregnet, hvis du går videre til løbende drift.</p>
+        <ul>
+          <li>Annoncering på Meta og Google Ads</li>
+          <li>Strategi ud fra dækningsgrad og livstidsværdi</li>
+          <li>Jeg sætter selv op og optimerer løbende</li>
+        </ul>
+      </div>
+
+      <div class="svc reveal">
+        <span class="leg-no">HVEM DET ER FOR</span>
+        <h3>Webshops, hvor tallene kan bære det</h3>
+        <p class="desc">Betalt annoncering er ikke det rigtige for alle. Hvis tallene ikke kan bære det, siger jeg det, som det er. Alt andet er spild af dine penge og min tid.</p>
+        <ul>
+          <li>Fornuftig dækningsgrad på produkterne</li>
+          <li>Gerne genkøb og loyale kunder</li>
+          <li>Et budget, der er stort nok til at arbejdet kan betale sig</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="block" id="proces">
+  <div class="wrap">
+    <div class="block-head reveal">
+      <span class="eyebrow">Sådan arbejder vi</span>
+      <h2>Du binder dig ikke til noget, før du har set, hvad jeg kan.</h2>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <span class="no">Trin 01</span>
+        <h3>Et gratis kig</h3>
+        <p>Send mig et link til din webshop og et par ord om jeres annoncering. Jeg kigger på det og siger ærligt, om jeg kan gøre en forskel. Det koster ikke noget.</p>
+      </div>
+      <div class="step">
+        <span class="no">Trin 02</span>
+        <h3>Analysen</h3>
+        <p>Er der noget at arbejde med, laver jeg den fulde analyse. Fast pris, konkret plan, og beløbet bliver modregnet, hvis du går videre.</p>
+      </div>
+      <div class="step">
+        <span class="no">Trin 03</span>
+        <h3>Vi bygger videre</h3>
+        <p>Jeg kører annonceringen løbende på en fast månedlig aftale. Og når jeg kender din forretning godt, kan vi tage fat på processerne bag den.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXTENSION: PROCESS (secondary leg) -->
+<section class="block extension" id="mere">
+  <div class="wrap">
+    <div class="block-head reveal">
+      <span class="eyebrow">Procesoptimering</span>
+      <h2>Det stopper ikke ved annoncekontoen.</h2>
+      <p>Jeg hjælper også virksomheder med at optimere og automatisere manuelle processer. For mine annoncekunder er det tit det naturlige næste skridt, men det fungerer også fint som selvstændige projekter.</p>
+    </div>
+    <div class="ext-grid reveal">
+
+      <div class="svc">
+        <span class="leg-no">ERFARING</span>
+        <h3>Processer, jeg har arbejdet med</h3>
+        <p class="desc">Typisk i virksomheder med flere afdelinger eller lokationer, hvor manuelle arbejdsgange koster tid og giver fejl. Jeg kortlægger flowet, finder de tunge steder og bygger det om.</p>
+        <ul>
+          <li>Bestilling og indkøb</li>
+          <li>Lagerstyring</li>
+          <li>Skadesanmeldelser og lignende sagsgange</li>
+          <li>Rapportering og økonomiprocesser</li>
+        </ul>
+      </div>
+
+      <div class="svc">
+        <span class="leg-no">FAST PRIS</span>
+        <h3>Proces- og automatiseringsdiagnose</h3>
+        <p class="desc">Jeg kortlægger jeres tungeste manuelle processer og afleverer en prioriteret plan med et estimat på, hvad I kan spare i tid og kroner. Fast pris, så I ved, hvad det koster, før vi går i gang.</p>
+        <ul>
+          <li>Konkret plan, før der bliver bygget noget</li>
+          <li>Estimat på besparelsen i tid og kroner</li>
+          <li>Jeg kan også stå for implementeringen</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="block" id="om">
+  <div class="wrap about-grid">
+    <div class="portrait reveal">
+      <img src="portait.jpg" alt="Frank Møbjerg" loading="lazy" decoding="async">
+    </div>
+    <div class="about-text reveal">
+      <span class="eyebrow">Om Møbjerg</span>
+      <h2 class="serif" style="font-size:clamp(26px,3.4vw,36px);font-weight:600;letter-spacing:-.015em;margin:16px 0 20px;line-height:1.1">Du hyrer ikke et bureau. Du hyrer en, der kender begge sider af bordet.</h2>
+      <p>Jeg hedder Frank Møbjerg. Min baggrund er <b>økonomistyring og ledelse</b> som financial og business controller, og sideløbende har jeg sat <b>digital annoncering</b> op på flere markeder og drevet en <b>Shopify-webshop</b> i det daglige.</p>
+      <p>Når jeg sidder med en annoncekonto, ser jeg derfor også dækningsgraden, lageret og rapporteringen bag den. Det er den helhed, beslutningerne skal tages ud fra. Og det er de færreste annoncefolk, der har den med.</p>
+      <div class="creds">
+        <span class="cred">Financial controller</span>
+        <span class="cred">Ledelseserfaring</span>
+        <span class="cred">Shopify-drift</span>
+        <span class="cred">Annoncering · flere markeder</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="block-head reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2>Ofte stillede spørgsmål</h2>
+    </div>
+    <div class="faq reveal">
+      <details>
+        <summary><h3>Hvilke platforme arbejder du med?</h3></summary>
+        <p class="a">Primært Meta, altså Facebook og Instagram, og Google Ads. Det er der, langt de fleste danske webshops henter deres nye kunder.</p>
+      </details>
+      <details>
+        <summary><h3>Hvad koster det?</h3></summary>
+        <p class="a">Det første kig er gratis. Analysen er til fast pris, som du kender på forhånd, og løbende annoncering kører som en fast månedlig aftale, der afhænger af budgettets størrelse. Du får altid prisen, før vi går i gang.</p>
+      </details>
+      <details>
+        <summary><h3>Hvor hurtigt kan jeg se resultater?</h3></summary>
+        <p class="a">Det afhænger af udgangspunktet. Oplagte fejl i opsætningen kan flyttes på uger, mens en ny strategi typisk skal have et par måneder. I min største case lå ROAS 20-30% over det tidligere bureaus inden for de første måneder.</p>
+      </details>
+      <details>
+        <summary><h3>Arbejder du kun med hårpleje og beauty?</h3></summary>
+        <p class="a">Nej. Min største case er en hårpleje-webshop, og det er den kategori jeg kender bedst, men tilgangen er den samme for de fleste webshops med fysiske produkter. Jeg starter altid i tallene.</p>
+      </details>
+      <details>
+        <summary><h3>Hvorfor ikke bare vælge et bureau?</h3></summary>
+        <p class="a">Det kan sagtens være det rigtige for nogle. Min erfaring er bare, at de fleste bureauer optimerer på annoncerne og ikke på forretningen bag. Da et bureau overtog den konto, jeg havde bygget op, faldt ROAS 100-200% på tre måneder.</p>
+      </details>
+      <details>
+        <summary><h3>Hvad er en proces- og automatiseringsdiagnose?</h3></summary>
+        <p class="a">En kortlægning af jeres tungeste manuelle processer, for eksempel bestilling, lager eller skadesanmeldelser. I får en prioriteret plan og et estimat på, hvad I kan spare. Den laves til fast pris.</p>
+      </details>
+      <details>
+        <summary><h3>Hvor i landet arbejder du?</h3></summary>
+        <p class="a">Jeg arbejder med virksomheder i hele Danmark. Det meste foregår online, og ellers kører jeg gerne ud.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="block contact" id="kontakt">
+  <div class="wrap">
+    <span class="eyebrow">Kontakt</span>
+    <h2>Er jeres annoncering bygget på data eller på <em>mavefornemmelser?</em></h2>
+    <p>Skriv et par linjer om jeres webshop herunder, så kigger jeg på jeres setup og vender ærligt tilbage. Som regel inden for et par dage.</p>
+    <form class="cform" action="https://formspree.io/f/maqzwdaa" method="POST">
+      <div class="frow">
+        <div class="ffield">
+          <label for="f-navn">Navn</label>
+          <input id="f-navn" type="text" name="navn" required autocomplete="name">
+        </div>
+        <div class="ffield">
+          <label for="f-email">E-mail</label>
+          <input id="f-email" type="email" name="email" required autocomplete="email">
+        </div>
+      </div>
+      <div class="ffield">
+        <label for="f-shop">Webshop</label>
+        <input id="f-shop" type="text" name="webshop" inputmode="url" placeholder="www.dinshop.dk">
+      </div>
+      <div class="ffield">
+        <label for="f-besked">Besked</label>
+        <textarea id="f-besked" name="besked" rows="4" required placeholder="Et par ord om jeres annoncering eller proces"></textarea>
+      </div>
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+      <input type="hidden" name="_subject" value="Ny henvendelse fra mobjerg.com">
+      <button type="submit" class="btn">Send besked</button>
+      <p class="fnote">Eller skriv direkte til <a href="mailto:frank@mobjerg.com">frank@mobjerg.com</a></p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot-inner">
+    <div class="brand">Mø<span>bjerg</span></div>
+    <div class="foot-links">
+      <a href="mailto:frank@mobjerg.com">frank@mobjerg.com</a>
+      <a href="#top">Til toppen</a>
+    </div>
+    <div class="mono" style="font-size:12px;opacity:.7">Koldingvej 25 · 7100 Vejle</div>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // mobile menu
+  const nav = document.querySelector('.nav');
+  const toggle = document.querySelector('.menu-toggle');
+  toggle.addEventListener('click', ()=>{
+    const open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click', ()=>{
+    nav.classList.remove('open');
+    toggle.setAttribute('aria-expanded','false');
+  }));
+</script>
+</body>
+</html>
